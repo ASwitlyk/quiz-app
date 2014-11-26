@@ -9,7 +9,8 @@ define([
     defaults: {
       name: '',
       email: '',
-      questions: []
+      questions: [],
+      score: 0
     },
 
     sync: function(method, model, options) {
