@@ -25,6 +25,7 @@ define([
 
     welcome: function() {
       this.render(WelcomeController.action());
+
     },
 
     again: function() {
