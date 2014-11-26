@@ -10,7 +10,6 @@ define([
       name: '',
       email: '',
       questions: [],
-      score: 0
     },
 
     sync: function(method, model, options) {
