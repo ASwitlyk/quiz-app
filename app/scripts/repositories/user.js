@@ -86,10 +86,48 @@ define([], function () {
         return localStorage.getItem(Repositories.usersSequence);
       },
 
-      getTopFive: function() {
+      getTopFive: function(collection) {
 
+        // array to store top five users (as objects to create models/users )
+        var topFiveArray = [],
+            options = {
+              error: function(e) {
+                console.log('error is: ', e);
+              },
+              success: function(users) {
+                if(Array.isArray(users)) {
+                  users.forEach(function(value) {
+                    var user = {};
+                    user.name = value.name;
+                    user.email = value.email;
+                    user.score = value.score;
+                    topFiveArray.push(user);
+                  });   
+                }
+              }
+            };
+
+        // Populate topFiveArray with all users in local storage if there are users
+        if(this.getTotalUsers() > 0) {
+          this.readAll(collection, options);
+          // sort topFiveArray by users score descending
+          topFiveArray.sort(function(a, b) {
+            return b.score - a.score;
+          });
+
+          // If topFiveArray greater than 5, splice it at index 4 to just retain topfive users
+          if(topFiveArray.length > 5) {
+            topFiveArray.splice(5);
+          }
+          
+        }
+        // reset and then populate collection with topfive users 
+        if(topFiveArray.length) {
+          collection.reset(topFiveArray);
+        }
       }
-    };
+
+    };  // End of return object
 
   })();
 

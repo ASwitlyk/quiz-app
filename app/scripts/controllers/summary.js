@@ -23,7 +23,7 @@ define([
         // Model created with userId, and when initialized new
         // answersPercentage object created
         summaryModel = new SummaryModel({ id: userId });
-        // parse run afte fetch to populate model data with attributes:
+        // parse run after fetch to populate model data with attributes:
         // score, result and merged questions
         summaryModel.fetch();
         console.log('summaryModel is: ', summaryModel);

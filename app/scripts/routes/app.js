@@ -4,14 +4,16 @@ define([
   'controllers/welcome',
   'controllers/again',
   'controllers/question',
-  'controllers/summary'
+  'controllers/summary',
+  'collections/topFiveUsersCollection'
 ], function (
   $,
   Backbone,
   WelcomeController,
   AgainController,
   QuestionController,
-  SummaryController) {
+  SummaryController,
+  topFiveCollection) {
 
   'use strict';
 
