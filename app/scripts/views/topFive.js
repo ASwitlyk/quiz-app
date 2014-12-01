@@ -42,14 +42,14 @@ define([
 	     	this.$el.html(this.template());
 	     	this.collection.fetch();
 	     	// create unordered list element
-	     	var list = $('<ul></ul>');
+	     	var list = $('<ol></ol>');
 
 	     	this.collection.each(function(model) {
 	     		var view = new TopUserView({model: model});
 	     		list.append(view.render().el);
 	     	});
 
-	     	this.$el.append(list);
+	     	this.$el.children('.top-scores').append(list);
 	     	return this;
 
 	     },
