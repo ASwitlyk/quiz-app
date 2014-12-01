@@ -5,7 +5,10 @@ define([
   'controllers/again',
   'controllers/question',
   'controllers/summary',
-  'collections/topFiveUsersCollection'
+  'collections/topFiveUsersCollection',
+  'views/topFive',
+  'repositories/user'
+
 ], function (
   $,
   Backbone,
@@ -13,9 +16,15 @@ define([
   AgainController,
   QuestionController,
   SummaryController,
-  topFiveCollection) {
+  TopFiveCollection,
+  TopFiveView,
+  UserRepository) {
 
   'use strict';
+
+  var topFiveCollection = new TopFiveCollection();
+
+  var topFiveView = new TopFiveView({collection: topFiveCollection});
 
   var AppRouter = Backbone.Router.extend({
     routes: {
@@ -24,6 +33,8 @@ define([
       'question-:id': 'question',
       'summary': 'summary'
     },
+
+    // var topFiveView = new TopFiveView();
 
     welcome: function() {
       this.render(WelcomeController.action());
@@ -45,6 +56,9 @@ define([
       if (this.currentView) {
         this.currentView.remove();
       }
+      // always update topfive view
+      UserRepository.getTopFive(topFiveCollection);
+      topFiveCollection.trigger('change');
 
       if (view) {
         this.currentView = view;

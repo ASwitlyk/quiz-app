@@ -7,7 +7,14 @@ define([
 		'use strict';
 
 		var TopFiveCollection = Backbone.Collection.extend({
+
 		  model: UserModel,
+
+		  initialize: function() {
+
+		  	this.on('clearAll', this.clearAll);
+
+		  },
 
 		  sync: function(method, collection, options) {
 		  	options || (options = {});
@@ -18,6 +25,16 @@ define([
 		  		  break;
 
 		  	}
+		  },
+
+		  clearAll: function() {
+
+		  	// clear persistent localStorage
+		  	localStorage.clear();
+		  	// reset collection
+		  	this.reset();
+		  	Backbone.history.navigate('', {trigger: true});
+
 		  }
 
 		});

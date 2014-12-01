@@ -26,7 +26,6 @@ define([
         // parse run after fetch to populate model data with attributes:
         // score, result and merged questions
         summaryModel.fetch();
-        console.log('summaryModel is: ', summaryModel);
 
         // Get user model from localStorage, add/set score attribute on model
         // to the score from the summaryModel, and update user model's information on 

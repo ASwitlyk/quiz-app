@@ -1,7 +1,7 @@
 define([
   'handlebars',
-  'templates'
-], function (Handlebars, JST) {
+  'templates',
+], function (Handlebars, JST, Collections) {
   'use strict';
 
   var Partials = {
@@ -13,6 +13,7 @@ define([
       Handlebars.registerPartial("welcome-again", this.templateAgain);
     }
   };
+
 
   return Partials;
 });
